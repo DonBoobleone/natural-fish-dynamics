@@ -1,0 +1,55 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 11. 10. 2025
+  Graphics:
+    - Added lanterns and fishing net to Fishing boat.
+    - Tweaked lights to better match visuals.
+  Optimizations:
+    - Slightly increased collision and seleciton box.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.7
+Date: 11. 09. 2025
+  Bugfixes:
+    - Fixed, fish could spawn under ground tile, in edge cases.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.6
+Date: 11. 07. 2025
+  Bugfixes:
+    - Fixed crash on adding to existing save.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.5
+Date: 11. 06. 2025
+  Optimizations:
+    - Optimized scaling of how fish breed.
+  Bugfixes:
+    - Fixed crash on starting new map.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.4
+Date: 11. 05. 2025
+  Compatibility:
+    - Added compatibility for 'aai-programmable-vehicles'
+---------------------------------------------------------------------------------------------------
+Version: 0.1.3
+Date: 11. 02. 2025
+  Optimizations:
+    - Fishing boat no longer leaves ghost when destroyed.
+  Minor Features:
+    - Added adjustable variables for fish breeding startup-options.
+    - Fishing boat is now remote drivable.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 11. 02. 2025
+  Graphics:
+    - Added water reflection (beta)
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 11. 01. 2025
+  Features:
+    - Fish can now breed on their own (optional, default=true)
+  Graphics:
+    - Updated fishing-boat icon.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 10. 31. 2025
+  Major Features:
+    - Initial release

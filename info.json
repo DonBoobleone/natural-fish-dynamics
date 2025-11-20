@@ -1,0 +1,9 @@
+{
+  "name": "natural-fish-dynamics", 
+  "version": "0.1.0",
+  "title": "Natural Fish Dynamics",
+  "author": "Don Boobleone",
+  "factorio_version": "2.0",
+  "dependencies": ["base >= 2.0.69", "?canal-excavator>=1.5.1" ],
+  "description": "Fish will slowly reproduce in the wild"
+}
