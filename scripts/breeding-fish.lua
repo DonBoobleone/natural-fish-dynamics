@@ -102,6 +102,7 @@ local function on_chunk_generated(event)
     storage.generated_chunks[surface_id] = (storage.generated_chunks[surface_id] or 0) + 1
 end
 
+--TODO: create list of allowed planets to save UPS?
 local function initialize_generated_chunks()
     for _, surface in pairs(game.surfaces) do
         if surface.planet then
