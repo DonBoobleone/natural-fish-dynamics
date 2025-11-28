@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.2
-Date: 11. 21. 2025
-  Info:
-    - Updated thumbnail to represent European Perch fish.
+Date: 11. 28. 2025
+  Features:
+    - Added supported planets list
+    - Added compatibility with modded fish prototype (Rabbasca - turbofish)
+  Bugfixes:
+    - Fixed a script reference with mod name pointing to fishing-boat.
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 11. 21. 2025

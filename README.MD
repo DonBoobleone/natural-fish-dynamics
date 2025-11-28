@@ -8,7 +8,14 @@ On any surface chunks have a chance to spawn fish if:
 Fish will reproduce based on a normal distribution.
 Highest chance of reproduction when water is half-full with fish.
 
-Fish to water ratio and breeding cycle can be fine tuned in the settings.
+Fish to water ratio (default: 4 water-tile / fish) and breeding cycle can be fine tuned in the settings.
+
+## Supported Planets
+- Nauvis
+- Gleba
+- Pelagos
+- Lignumis
+- Rabbasca
 
 ## Tip
 You can catch and release fish by dropping them in water with 'Z'
@@ -18,3 +25,6 @@ You can catch and release fish by dropping them in water with 'Z'
 ## Recommended mods
 - Fishing Boat
 - Canal Excavator
+- Planet - Pelagos
+- Planet - Lignumis
+- Planet - Rabbasca

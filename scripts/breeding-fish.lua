@@ -4,7 +4,6 @@ local is_debug_active = script.active_mods["debugadapter"] ~= nil
 local breeding_cycle = settings.startup["breeding-cycle"].value
 ---@cast breeding_cycle integer
 local breeding_limit = settings.startup["breeding-limit"].value
----@cast breeding_limit integer
 local breeding_space_ratio = 1024 / breeding_limit
 
 -- Scaling parameters; adjust divisor for desired growth rate
@@ -13,6 +12,14 @@ local chunks_scale_divisor = 1000 -- e.g., N ~ total_chunks / 1000, min 1
 
 -- Track generated chunks per surface
 storage.generated_chunks = storage.generated_chunks or {}
+
+local supported_planets = {
+    ["nauvis"] = true,
+    ["gleba"] = true,
+    ["pelagos"] = true,
+    ["lignumis"] = true,
+    ["rabbasca"] = true,
+}
 
 local function get_chunk_area(chunk_pos)
     local left_top = { x = chunk_pos.x * 32, y = chunk_pos.y * 32 }
@@ -39,7 +46,7 @@ end
 local function breed_in_chunk(surface, chunk_pos)
     local area = get_chunk_area(chunk_pos)
 
-    local fish = surface.find_entities_filtered{area = area, type = "fish"}
+    local fish = surface.find_entities_filtered { area = area, type = "fish" }
     local fish_count = #fish
     if fish_count < 2 or fish_count > breeding_limit then
         return
@@ -64,32 +71,39 @@ local function breed_in_chunk(surface, chunk_pos)
             return
         end
 
+        local fish_name = fish[1].name
         local max_tries = math.max(1, math.floor(#water_tiles / 2))
+
         for _ = 1, max_tries do
             local tile = water_tiles[math.random(1, #water_tiles)]
-            if surface.can_place_entity{name = "fish", position = tile.position} then
-                local entity = surface.create_entity{name = "fish", position = tile.position}
+            if surface.can_place_entity { name = fish_name, position = tile.position } then
+                local entity = surface.create_entity { name = fish_name, position = tile.position }
                 if entity then
                     --[[ if is_debug_active then
-                        game.print(string.format("Fish just spawned at (%d, %d)", tile.position.x, tile.position.y))
+                        game.print(string.format("Fish just spawned on %s at (%d, %d): %s", surface.planet.name,
+                            tile.position.x, tile.position.y, entity.name))
                     end ]]
                     return
                 end
             end
         end
+
     end
 end
 
 local function on_breeding_tick(event)
     for _, surface in pairs(game.surfaces) do
         if surface.planet then
-            local total_chunks = storage.generated_chunks[surface.index] or 1
-            local num_chunks = math.max(1, math.min(max_chunks_per_cycle, math.ceil(total_chunks / chunks_scale_divisor)))
+            local planet_name = surface.planet.name
+            if supported_planets[planet_name] then
+                local total_chunks = storage.generated_chunks[surface.index] or 1
+                local num_chunks = math.max(1, math.min(max_chunks_per_cycle, math.ceil(total_chunks / chunks_scale_divisor)))
 
-            for i = 1, num_chunks do
-                local chunk = surface.get_random_chunk()
-                if chunk then
-                    breed_in_chunk(surface, chunk)
+                for i = 1, num_chunks do
+                    local chunk = surface.get_random_chunk()
+                    if chunk then
+                        breed_in_chunk(surface, chunk)
+                    end
                 end
             end
         end
@@ -98,14 +112,15 @@ end
 
 local function on_chunk_generated(event)
     local surface = event.surface
-    local surface_id = surface.index
-    storage.generated_chunks[surface_id] = (storage.generated_chunks[surface_id] or 0) + 1
+    if surface.planet and supported_planets[surface.planet.name] then
+        local surface_id = surface.index
+        storage.generated_chunks[surface_id] = (storage.generated_chunks[surface_id] or 0) + 1
+    end
 end
 
---TODO: create list of allowed planets to save UPS?
 local function initialize_generated_chunks()
     for _, surface in pairs(game.surfaces) do
-        if surface.planet then
+        if surface.planet and supported_planets[surface.planet.name] then
             if not storage.generated_chunks[surface.index] then
                 local count = 0
                 for _ in surface.get_chunks() do
@@ -123,7 +138,7 @@ script.on_init(function()
 end)
 
 script.on_configuration_changed(function(data)
-    if data.mod_changes["fishing-boat"] then
+    if data.mod_changes["natural-fish-dynamics"] then
         storage.generated_chunks = storage.generated_chunks or {}
         initialize_generated_chunks()
     end
