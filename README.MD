@@ -1,7 +1,7 @@
 # Natural Fish Dynamics - A Mod for Factorio
 
 Fish breed on their own in their natural habitat.
-On any surface chunks have a chance to spawn fish if:
+On supported planets chunks can spawn fish if:
 - There is at least 2 Fish
 - There is enough water.
 
@@ -12,7 +12,7 @@ Fish to water ratio (default: 4 water-tile / fish) and breeding cycle can be fin
 
 ## Supported Planets
 - Nauvis
-- Gleba
+- Gleba - Check tips how to import fish on Gleba
 - Pelagos
 - Lignumis
 - Rabbasca
@@ -25,6 +25,8 @@ You can catch and release fish by dropping them in water with 'Z'
 ## Recommended mods
 - Fishing Boat
 - Canal Excavator
+
+## Compatibility
 - Planet - Pelagos
 - Planet - Lignumis
 - Planet - Rabbasca

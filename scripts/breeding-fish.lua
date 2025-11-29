@@ -9,7 +9,6 @@ local breeding_space_ratio = 1024 / breeding_limit
 -- Scaling parameters; adjust divisor for desired growth rate (lower = faster)
 local chunks_scale_divisor = 1500
 local max_chunks_per_surface_per_tick = 32 -- Per-surface cap for every-tick processing
-local global_max_chunks_per_tick = 128 -- Global cap (prevents multi-planet overload) -- Remove this, we have 5 planets we can be samrt with per tick value
 
 -- Track generated chunks per surface
 storage.generated_chunks = storage.generated_chunks or {}
@@ -97,23 +96,17 @@ local function breed_in_chunk(surface, chunk_pos)
 end
 
 local function on_breeding_tick(event)
-    local total_chunks_this_tick = 0
     for planet_name in pairs(supported_planets) do
         local surface = game.surfaces[planet_name]
         if surface then
             local total_chunks = storage.generated_chunks[surface.index] or 1
             local num_chunks = math.max(1, math.min(max_chunks_per_surface_per_tick, math.ceil(total_chunks / (chunks_scale_divisor))))
-            num_chunks = math.min(num_chunks, global_max_chunks_per_tick - total_chunks_this_tick)
 
             for i = 1, num_chunks do
                 local chunk = surface.get_random_chunk()
                 if chunk then
                     breed_in_chunk(surface, chunk)
                 end
-            end
-            total_chunks_this_tick = total_chunks_this_tick + num_chunks
-            if total_chunks_this_tick >= global_max_chunks_per_tick then
-                break
             end
         end
     end
