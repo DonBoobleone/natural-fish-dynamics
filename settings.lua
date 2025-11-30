@@ -8,16 +8,17 @@ data:extend({
         minimum_value = 16,
         maximum_value = 512,
         order = "a",
-        localised_description = {"", "Max fish in a chunk full of water."}
+        localised_name = {"mod-setting-name.breeding-limit"},
+        localised_description = {"mod-setting-description.breeding-limit"}
     },
     {
-        type = "int-setting",
+        type = "string-setting",
         name = "breeding-cycle",
         setting_type = "startup",
-        default_value = 60,
-        minimum_value = 30,
-        maximum_value = 600,
+        default_value = "normal",
+        allowed_values = {"fast-(x2)", "normal", "slow-(/2)", "very-slow-(/5)", "ultra-slow-(/10)"},
         order = "b",
-        localised_description = {"", "In ticks, Script will run every Nth tick only."}
+        localised_name = {"mod-setting-name.breeding-cycle"},
+        localised_description = {"mod-setting-description.breeding-cycle"}
     }
 })
