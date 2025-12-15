@@ -13,6 +13,7 @@ Fish to water ratio (default: 4 water-tile / fish) and breeding cycle can be fin
 ## Supported Planets
 - Nauvis
 - Gleba - Check tips how to import fish on Gleba
+- Aquilo - Fish import is also needed (Note: Won't work with mods that void items in ammonia ocean)
 - Pelagos
 - Lignumis
 - Rabbasca
@@ -25,8 +26,10 @@ You can catch and release fish by dropping them in water with 'Z'
 ## Recommended mods
 - Fishing Boat
 - Canal Excavator
+- Fish Finder
 
 ## Compatibility
 - Planet - Pelagos
 - Planet - Lignumis
 - Planet - Rabbasca
+- Dredgeworks: Frozen Reaches (DISABLE mod setting: 'Aquilo ocean destroys items' - or importing fish will not be possible)
