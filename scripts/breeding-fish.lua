@@ -26,19 +26,22 @@ local function on_tick_handler(event)
     local current_space_ratio = 1024 / current_limit
 
     for planet_name in pairs(FishUtils.supported_planets) do
-        local surface = game.surfaces[planet_name]
-        if surface then
-            local surface_id = surface.index
-            local total_chunks = storage.generated_chunks[surface_id] or 1
+        -- Skip if breeding is disabled for this planet
+        if settings.global["breeding-enable-" .. planet_name].value then
+            local surface = game.surfaces[planet_name]
+            if surface then
+                local surface_id = surface.index
+                local total_chunks = storage.generated_chunks[surface_id] or 1
 
-            local raw_nth = current_cycle * chunks_scale_divisor / total_chunks
-            local min_nth = math.ceil(current_cycle / max_chunks_per_surface_per_tick)
-            local nth = math.max(min_nth, math.min(current_cycle, math.floor(raw_nth + 0.5)))
+                local raw_nth = current_cycle * chunks_scale_divisor / total_chunks
+                local min_nth = math.ceil(current_cycle / max_chunks_per_surface_per_tick)
+                local nth = math.max(min_nth, math.min(current_cycle, math.floor(raw_nth + 0.5)))
 
-            if tick % nth == 0 then
-                local chunk = surface.get_random_chunk()
-                if chunk then
-                    FishUtils.breed_in_chunk(surface, chunk, current_limit, current_space_ratio)
+                if tick % nth == 0 then
+                    local chunk = surface.get_random_chunk()
+                    if chunk then
+                        FishUtils.breed_in_chunk(surface, chunk, current_limit, current_space_ratio)
+                    end
                 end
             end
         end

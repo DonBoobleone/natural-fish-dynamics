@@ -18,6 +18,16 @@ Fish to water ratio (default: 4 water-tile / fish) and breeding cycle can be fin
 - Lignumis
 - Rabbasca
 
+## Settings
+
+All settings are runtime-global and can be changed in-game at any time.
+
+- **Breeding Limit** – Maximum fish per chunk before overpopulation stops breeding (default 256, 16–512).
+- **Breeding Cycle** – How frequently breeding attempts occur (default "normal"; options from "fast (×2)" to "ultra-slow (÷10)").
+- **Enable Breeding on [Planet]** – One toggle per planet (Nauvis, Gleba, Aquilo, Pelagos, Lignumis, Rabbasca). All default to enabled.
+
+Disabling breeding on a planet you don't plan to use fish on skips all breeding checks for that planet, saving UPS with no side effects.
+
 ## Tip
 You can catch and release fish by dropping them in water with 'Z'
 [Watch video](https://www.youtube.com/watch?v=rKjyyxmKQec)
