@@ -11,13 +11,6 @@ local cycle_mapping =
     ["ultra-slow-(/10)"] = 600
 }
 
--- Scaling parameters; adjust divisor for desired growth rate (lower = faster)
-local chunks_scale_divisor = 1500
-local max_chunks_per_surface_per_tick = 32 -- Per-surface cap for every-tick processing
-
--- Track generated chunks per surface
-storage.generated_chunks = storage.generated_chunks or {}
-
 local FishUtils = require("scripts.fish-utils")
 
 local function on_tick_handler(event)
@@ -27,6 +20,8 @@ local function on_tick_handler(event)
     local current_cycle = cycle_mapping[settings.global["breeding-cycle"].value] or 60
     local current_limit = settings.global["breeding-limit"].value
     local current_space_ratio = 1024 / current_limit
+    local current_scale = settings.global["breeding-chunk-scale-divisor"].value
+    local current_max_chunks = settings.global["breeding-max-chunks-per-tick"].value
 
     for planet_name in pairs(FishUtils.supported_planets) do
         -- Skip if breeding is disabled for this planet
@@ -36,8 +31,8 @@ local function on_tick_handler(event)
                 local surface_id = surface.index
                 local total_chunks = storage.generated_chunks[surface_id] or 1
 
-                local raw_nth = current_cycle * chunks_scale_divisor / total_chunks
-                local min_nth = math.ceil(current_cycle / max_chunks_per_surface_per_tick)
+                local raw_nth = current_cycle * current_scale / total_chunks
+                local min_nth = math.ceil(current_cycle / current_max_chunks)
                 local nth = math.max(min_nth, math.min(current_cycle, math.floor(raw_nth + 0.5)))
 
                 if tick % nth == 0 then

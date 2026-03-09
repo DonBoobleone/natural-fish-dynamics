@@ -4,7 +4,7 @@ data:extend({
         type = "int-setting",
         name = "breeding-limit",
         setting_type = "runtime-global",
-        default_value = 256,
+        default_value = 128,
         minimum_value = 16,
         maximum_value = 512,
         order = "a",
@@ -20,6 +20,28 @@ data:extend({
         order = "b",
         localised_name = {"mod-setting-name.breeding-cycle"},
         localised_description = {"mod-setting-description.breeding-cycle"}
+    },
+    {
+        type = "int-setting",
+        name = "breeding-chunk-scale-divisor",
+        setting_type = "runtime-global",
+        default_value = 1200,
+        minimum_value = 300,
+        maximum_value = 3600,
+        order = "b-a",
+        localised_name = {"mod-setting-name.breeding-chunk-scale-divisor"},
+        localised_description = {"mod-setting-description.breeding-chunk-scale-divisor"}
+    },
+    {
+        type = "int-setting",
+        name = "breeding-max-chunks-per-tick",
+        setting_type = "runtime-global",
+        default_value = 32,
+        minimum_value = 8,
+        maximum_value = 128,
+        order = "b-b",
+        localised_name = {"mod-setting-name.breeding-max-chunks-per-tick"},
+        localised_description = {"mod-setting-description.breeding-max-chunks-per-tick"}
     },
 
     -- Per-planet enable/disable settings (default true)

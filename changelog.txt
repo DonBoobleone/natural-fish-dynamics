@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.3
+Date: 03. 10. 2026
+  Features:
+    - Added options to change how fast map size scales breeding.
+  Optimizations:
+    - Changed default value of breeding limit: 256 -> 128
+---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 03. 09. 2026
   Features:
@@ -7,7 +14,7 @@ Date: 03. 09. 2026
 Version: 0.2.1
 Date: 01. 13. 2026
   Features:
-    - Added options to enable/disable breeding for every supported planet.
+    - Added option to enable/disable breeding for every supported planet.
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 01. 10. 2026
