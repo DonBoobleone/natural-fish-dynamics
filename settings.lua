@@ -16,7 +16,7 @@ data:extend({
         name = "breeding-cycle",
         setting_type = "runtime-global",
         default_value = "normal",
-        allowed_values = {"fast-(x2)", "normal", "slow-(/2)", "very-slow-(/5)", "ultra-slow-(/10)"},
+        allowed_values = {"ultra-fast-(x10)", "very-fast-(x5)", "fast-(x2)", "normal", "slow-(/2)", "very-slow-(/5)", "ultra-slow-(/10)"},
         order = "b",
         localised_name = {"mod-setting-name.breeding-cycle"},
         localised_description = {"mod-setting-description.breeding-cycle"}

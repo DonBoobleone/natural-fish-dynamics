@@ -8,7 +8,7 @@ On supported planets chunks can spawn fish if:
 Fish will reproduce based on a normal distribution.
 Highest chance of reproduction when water is half-full with fish.
 
-Fish to water ratio (default: 4 water-tile / fish) and breeding cycle can be fine tuned in the settings.
+Fish to water ratio based on setting: **Breeding Limit** / 1024 (max tiles in a chunk)
 
 ## Supported Planets
 - Nauvis
@@ -34,9 +34,10 @@ You can catch and release fish by dropping them in water with 'Z'
 [![Catch and Release Thumbnail](https://img.youtube.com/vi/rKjyyxmKQec/maxresdefault.jpg)](https://www.youtube.com/watch?v=rKjyyxmKQec)
 
 ## Recommended mods
-- Fishing Boat
-- Canal Excavator
-- Fish Finder
+- [Fishing Boat](https://mods.factorio.com/mod/fishing-boat)
+- [Fish Finder](https://mods.factorio.com/mod/fish-finder)
+- [Canal Excavator](https://mods.factorio.com/mod/canal-excavator)
+
 
 ## Compatibility
 - Planet - Pelagos

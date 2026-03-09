@@ -1,11 +1,14 @@
 -- breeding-fish.lua
 -- Map descriptive strings to tick values (hidden from UI; multipliers relative to 60-tick standard)
-local cycle_mapping = {
-    ["fast-(x2)"] = 30,      -- 2x frequency
-    ["normal"] = 60,        -- 1x (baseline)
-    ["slow-(/2)"] = 120,     -- 0.5x frequency
-    ["very-slow-(/5)"] = 300, -- 0.2x frequency
-    ["ultra-slow-(/10)"] = 600 -- 0.1x frequency
+local cycle_mapping =
+{
+    ["ultra-fast-(x10)"] = 6,
+    ["very-fast-(x5)"] = 12,
+    ["fast-(x2)"] = 30,
+    ["normal"] = 60,
+    ["slow-(/2)"] = 120,
+    ["very-slow-(/5)"] = 300,
+    ["ultra-slow-(/10)"] = 600
 }
 
 -- Scaling parameters; adjust divisor for desired growth rate (lower = faster)
