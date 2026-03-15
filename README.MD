@@ -8,8 +8,6 @@ On supported planets chunks can spawn fish if:
 Fish will reproduce based on a normal distribution.
 Highest chance of reproduction when water is half-full with fish.
 
-Fish to water ratio based on setting: **Breeding Limit** / 1024 (max tiles in a chunk)
-
 ## Supported Planets
 - Nauvis
 - Gleba - Check tips how to import fish on Gleba
@@ -22,8 +20,11 @@ Fish to water ratio based on setting: **Breeding Limit** / 1024 (max tiles in a 
 
 All settings are runtime-global and can be changed in-game at any time.
 
-- **Breeding Limit** – Maximum fish per chunk before overpopulation stops breeding (default 256, 16–512).
-- **Breeding Cycle** – How frequently breeding attempts occur (default "normal"; options from "fast (×2)" to "ultra-slow (÷10)").
+- **Breeding Limit** – Maximum number of fish allowed per full-water chunk before overpopulation stops breeding (default 128, 16–512).
+- **Breeding Cycle** – How frequently breeding attempts occur (default "normal"; options from "ultra-fast (×10)" to "ultra-slow (÷10)").
+- **Breeding Chunk Scale Divisor** – Controls overall breeding frequency across the map. Lower values = faster fish population growth. Higher values = slower growth with lower UPS impact (default 1200).
+- **Breeding Max Chunks Per Tick** – Maximum chunks the mod can check per tick per surface. Higher = faster breeding on very large maps but higher UPS usage. Lower = better performance (default 32).
+- **Fish Litter Size** – Determines how many fish are born at once from a successful breeding (default 1, 1–16).
 - **Enable Breeding on [Planet]** – One toggle per planet (Nauvis, Gleba, Aquilo, Pelagos, Lignumis, Rabbasca). All default to enabled.
 
 Disabling breeding on a planet you don't plan to use fish on skips all breeding checks for that planet, saving UPS with no side effects.
@@ -37,7 +38,7 @@ You can catch and release fish by dropping them in water with 'Z'
 - [Fishing Boat](https://mods.factorio.com/mod/fishing-boat)
 - [Fish Finder](https://mods.factorio.com/mod/fish-finder)
 - [Canal Excavator](https://mods.factorio.com/mod/canal-excavator)
-
+- [Fishing Trawler](https://mods.factorio.com/mod/fishing-trawler)
 
 ## Compatibility
 - Planet - Pelagos

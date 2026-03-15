@@ -1,4 +1,3 @@
--- breeding-fish.lua
 -- Map descriptive strings to tick values (hidden from UI; multipliers relative to 60-tick standard)
 local cycle_mapping =
 {
@@ -22,6 +21,7 @@ local function on_tick_handler(event)
     local current_space_ratio = 1024 / current_limit
     local current_scale = settings.global["breeding-chunk-scale-divisor"].value
     local current_max_chunks = settings.global["breeding-max-chunks-per-tick"].value
+    local current_litter_size = settings.global["fish-litter-size"].value
 
     for planet_name in pairs(FishUtils.supported_planets) do
         -- Skip if breeding is disabled for this planet
@@ -38,7 +38,7 @@ local function on_tick_handler(event)
                 if tick % nth == 0 then
                     local chunk = surface.get_random_chunk()
                     if chunk then
-                        FishUtils.breed_in_chunk(surface, chunk, current_limit, current_space_ratio)
+                        FishUtils.breed_in_chunk(surface, chunk, current_limit, current_space_ratio, current_litter_size)
                     end
                 end
             end

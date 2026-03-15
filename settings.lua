@@ -43,6 +43,17 @@ data:extend({
         localised_name = {"mod-setting-name.breeding-max-chunks-per-tick"},
         localised_description = {"mod-setting-description.breeding-max-chunks-per-tick"}
     },
+    {
+        type = "int-setting",
+        name = "fish-litter-size",
+        setting_type = "runtime-global",
+        default_value = 1,
+        minimum_value = 1,
+        maximum_value = 16,
+        order = "b-c",
+        localised_name = {"mod-setting-name.fish-litter-size"},
+        localised_description = {"mod-setting-description.fish-litter-size"}
+    },
 
     -- Per-planet enable/disable settings (default true)
     {

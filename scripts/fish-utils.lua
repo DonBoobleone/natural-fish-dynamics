@@ -33,7 +33,7 @@ local function calculate_breeding_probability(fish_count, max_viable)
     end
 end
 
-local function breed_in_chunk(surface, chunk_pos, breeding_limit, breeding_space_ratio)
+local function breed_in_chunk(surface, chunk_pos, breeding_limit, breeding_space_ratio, litter_size)
     local area = get_chunk_area(chunk_pos) -- Compute once
 
     local fish = surface.find_entities_filtered { area = area, type = "fish" }
@@ -60,6 +60,8 @@ local function breed_in_chunk(surface, chunk_pos, breeding_limit, breeding_space
         local left_top = area[1]
         local fish_name = fish[1].name
 
+        -- Find one valid position once (UPS friendly)
+        local spawn_pos = nil
         for _ = 1, max_tries do
             -- Random pos in chunk
             local pos = {
@@ -69,28 +71,35 @@ local function breed_in_chunk(surface, chunk_pos, breeding_limit, breeding_space
             local tile = surface.get_tile(pos)
             if tile and tile.collides_with("water_tile") then
                 if surface.can_place_entity { name = fish_name, position = pos } then
-                    local entity = surface.create_entity { name = fish_name, position = pos }
-                    if entity then
-                        --[[ -- DEBUG -- Should be commented on release version, never deleted.
-                        if is_debug_active then
-                            local colors = {
-                                ["nauvis"] = { 0.5, 1, 0.5 },      -- light green
-                                ["gleba"] = { 0, 0.5, 0 },         -- dark green
-                                ["aquilo"] = { 0, 0.1, 0.8 },      -- dark blue
-                                ["pelagos"] = { 0.96, 0.87, 0.7 }, -- sand beige
-                                ["lignumis"] = { 1, 0.84, 0 },     -- golden
-                                ["rabbasca"] = { 0.8, 0.4, 1 },    -- purple
-                            }
-                            local color = colors[surface.planet.name] or { 1, 1, 1 }
-                            local message = string.format("Fish just spawned on %s at (%.1f, %.1f): %s",
-                                surface.planet.name,
-                                pos.x, pos.y, entity.name)
-                            game.print(message, { color = color })
-                        end
-                        -- DEBUG END -- ]]
-                        return
+                    spawn_pos = pos
+                    break
+                end
+            end
+        end
+
+        if spawn_pos then
+            -- Spawn entire litter at the same spot (much cheaper than per-fish search)
+            for _ = 1, litter_size do
+                local entity = surface.create_entity { name = fish_name, position = spawn_pos }
+                --[[ -- DEBUG -- Should be commented on release version, never deleted.
+                if entity then
+                    if is_debug_active then
+                        local colors = {
+                            ["nauvis"] = { 0.5, 1, 0.5 },      -- light green
+                            ["gleba"] = { 0, 0.5, 0 },         -- dark green
+                            ["aquilo"] = { 0, 0.1, 0.8 },      -- dark blue
+                            ["pelagos"] = { 0.96, 0.87, 0.7 }, -- sand beige
+                            ["lignumis"] = { 1, 0.84, 0 },     -- golden
+                            ["rabbasca"] = { 0.8, 0.4, 1 },    -- purple
+                        }
+                        local color = colors[surface.planet.name] or { 1, 1, 1 }
+                        local message = string.format("Fish just spawned on %s at (%.1f, %.1f): %s",
+                            surface.planet.name,
+                            spawn_pos.x, spawn_pos.y, entity.name)
+                        game.print(message, { color = color })
                     end
                 end
+                -- DEBUG END -- ]]
             end
         end
     end
